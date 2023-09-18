@@ -5,7 +5,7 @@
 <script>
 export default {
   props: ["label", "href", "user-role"],
-};
+}
 </script>
 
 <style lang="scss" scoped>

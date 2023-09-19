@@ -129,7 +129,7 @@
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import DynamicArrayViewer from "../components/DynamicArrayViewer.vue";
 import UpdateDialog from "../components/UpdateDialog.vue";
-import { getAllCountries, deleteCountryByID, getAllUsers, deleteUserByID,addAllCountries } from "../../facade/AdminFacade.js";
+//import { getAllCountries, deleteCountryByID, getAllUsers, deleteUserByID,addAllCountries } from "../../facade/AdminFacade.js";
 export default {
   name: "Admin",
   components: { FadingLightsAnimation, DynamicArrayViewer, UpdateDialog },
@@ -315,6 +315,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
 .sub-title {
   font-size: 1.5em;
   text-align: center;

@@ -19,6 +19,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
     .contenedor-footer{
         display: flex;
         flex-direction: column;
@@ -31,7 +35,7 @@
     .footer-text {
         text-align: center;
         width: 50%;
-        color: white; 
+        color: #dbdbdb; 
         padding-bottom: 1em;
     }
 </style>

@@ -272,6 +272,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
 .selector {
   position: absolute;
   right: 0;

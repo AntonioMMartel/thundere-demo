@@ -75,11 +75,9 @@ export default {
     search(input, filters) {
       let results = [];
       for(let i = 0; i < countries.length; i++){
-        for(let j = 0; j < countries.length; j++) {
-          
+        for(let j = 0; j < countries[i].names.length; j++) {
+          if(countries[i].names[j] == input) results.push(countries[i]) 
         }
-        
-        //results.push()
       }
 
 
@@ -90,7 +88,7 @@ export default {
     if(typeof(this.input) === "undefined" ) this.input = "";
     search(this.input, this.$route.query.filters)
     .then((response) => {
-      this.data = response.data
+      this.data = response
 
       switch(this.shownData.length) {
 
@@ -141,6 +139,10 @@ export default {
 </script>
 
 <style lang="scss">
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
 
 .message {
   width: 100%;

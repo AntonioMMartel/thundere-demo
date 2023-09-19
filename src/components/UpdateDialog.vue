@@ -28,8 +28,8 @@
 
 <script>
 import DynamicArrayUpdater from './DynamicArrayUpdater.vue';
-import { view } from '../../facade/SearchFacade';
-import { updateCountryById, updateUseryById, addUser, addCountry } from  '../../facade/AdminFacade.js';
+//import { view } from '../../facade/SearchFacade';
+//import { updateCountryById, updateUseryById, addUser, addCountry } from  '../../facade/AdminFacade.js';
 export default {
   name: "UpdateDialog",
   data() {
@@ -110,6 +110,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
 
 .error {
   text-align: center;

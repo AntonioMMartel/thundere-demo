@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { login } from "../../facade/AuthorizationFacade";
+//import { login } from "../../facade/AuthorizationFacade";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 
 export default {
@@ -62,6 +62,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
 .login {
   height: 77.5vh;
   color: $primary-color;

@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
-//import Bookmarks from "../views/Bookmarks";
-//import CountryViewer from "../views/CountryViewer";
-//import Home from "../views/Home";
-//import Login from "../views/Login";
-//import Registration from "./views/Registration";
-//import Logout from "../views/Logout";
-//import History from "../views/History";
-//import Admin from "../views/Admin";
-//import VueTest from "../views/VueTest";
-//import NotFound from "../views/NotFound";
-//import SearchResults from "../views/SearchResults";
+
+import CountryViewer from "../views/CountryViewer.vue";
+import Login from "../views/Login.vue";
+import Registration from "../views/Registration.vue";
+import Logout from "../views/Logout.vue";
+import History from "../views/History.vue";
+import Admin from "../views/Admin.vue";
+import VueTest from "../views/VueTest.vue";
+import NotFound from "../views/NotFound.vue";
+import SearchResults from "../views/SearchResults.vue";
+import Bookmarks from "../views/Bookmarks.vue";
 
 
 
@@ -22,11 +22,9 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/Home.vue')
-    },
-    /* 
+    }, 
         { path: "/bookmarks",
     component: Bookmarks },
-    //{ path: "/", component: Home },
     { path: "/login", component: Login },
     { path: "/search/:input", component: SearchResults, props: true },
     { path: "/search", component: SearchResults, props: true },
@@ -36,8 +34,8 @@ const router = createRouter({
     { path: "/history", component: History },
     { path: "/admin", component: Admin },
     { path: "/test", component: VueTest },
-    { path: "*", component: NotFound },
-    */
+    { path: "/not/found", component: NotFound },
+    
   
   ]
 })

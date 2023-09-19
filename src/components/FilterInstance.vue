@@ -223,6 +223,10 @@ export default {
 
 <style lang="scss" scoped>
 
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
+
 input[type="date"] {
   /* Turn off the native look and feel */
   appearance: none;

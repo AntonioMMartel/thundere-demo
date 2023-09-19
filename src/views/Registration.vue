@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import {register} from "../../facade/AuthorizationFacade";
+//import {register} from "../../facade/AuthorizationFacade";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 export default {
   data: () => ({
@@ -46,11 +46,15 @@ export default {
       // Deberia redirigir a algo de confirmar usuario con su codigo que le llega al email
     }
   },
-  components: {FadingLightsAnimation}
+  components: {FadingLightsAnimation},
 };
 </script>
 
 <style lang="scss" scoped>
+
+$primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
+$primary-color-darker: #a6a6a6;
+
 .login {
   height: 77.5vh;
   color: $primary-color;

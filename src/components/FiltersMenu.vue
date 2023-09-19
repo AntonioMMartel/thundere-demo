@@ -52,7 +52,6 @@ export default {
       this.$set(this.filterData[index], 'filter', filterData.filter)
       this.$set(this.filterData[index], 'condition', filterData.condition)
       this.$set(this.filterData[index], 'userInput', filterData.userInput)
-
       this.$emit("filterChanged", this.filterData)
     }
   },

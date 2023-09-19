@@ -100,6 +100,7 @@ export default {
   border: none !important;
   max-width: 15px;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,

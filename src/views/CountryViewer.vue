@@ -20,7 +20,7 @@
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import GeneralDataViewer from "../components/GeneralDataViewer.vue";
 
-import { view } from "../../facade/SearchFacade";
+
 import WeatherDataViewer from "../components/WeatherDataViewer.vue";
 
 export default {

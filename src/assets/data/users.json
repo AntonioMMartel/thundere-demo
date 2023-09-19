@@ -7,7 +7,7 @@
     "ROLE_USER",
     "ROLE_ADMIN"
   ],
-  "password": "$2y$13$mvJw6rHq6Vm7fK2h8ly5Zuh9Ul1pm6fM5/AZ.Y7s7lIBKr4lUFFEq",
+  "password": "123",
   "name": "Administrador",
   "confirmation_code": "temp",
   "confirmation_time": {
@@ -21,12 +21,12 @@
   "_id": {
     "$oid": "62acf56f8f5800b5d20b9205"
   },
-  "email": "goofy@email.com",
+  "email": "Guest@email.com",
   "roles": [
     "ROLE_USER"
   ],
-  "password": "$2y$13$v0Xe/kg1/CHKhEK4PaqRVue.1MN5dhLLC/Rjg.rHcjbIaMVg4gSES",
-  "name": "Goofy",
+  "password": "123",
+  "name": "Guest",
   "confirmation_code": "temp",
   "confirmation_time": {
     "$date": "2022-06-17T21:43:11.000Z"
@@ -39,12 +39,12 @@
   "_id": {
     "$oid": "62d9a19ddc4430b9b001fe45"
   },
-  "email": "aaaaa@email.com",
+  "email": "prueba@email.com",
   "roles": [
     "ROLE_USER"
   ],
-  "password": "$2y$13$rIuTWSBIFnclv.ZIOWimVuFGEA33vCoeanhyRhgYEooEg2n2XaLoa",
-  "name": "aaaaaa",
+  "password": "123",
+  "name": "Prueba",
   "confirmation_code": "temp",
   "confirmation_time": {
     "$date": "2022-07-21T18:57:33.000Z"

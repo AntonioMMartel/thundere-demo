@@ -31,7 +31,8 @@
 <script>
 import CountrySearchInput from "../components/CountrySearchInput.vue";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
-import { search, view } from "../../facade/SearchFacade";
+//import { search } from "../../facade/SearchFacade";
+import countries from "../assets/data/countries.json"
 
 export default {
   name: "SearchResults",
@@ -70,6 +71,19 @@ export default {
     },
     viewCountry(input) {
       window.location.replace("/country/" + input);
+    },
+    search(input, filters) {
+      let results = [];
+      for(let i = 0; i < countries.length; i++){
+        for(let j = 0; j < countries.length; j++) {
+          
+        }
+        
+        //results.push()
+      }
+
+
+      return results;
     }
   },
   beforeMount() {

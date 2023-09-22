@@ -19,8 +19,31 @@
             No data has been found
           </div> 
 
-          <div class="data-content" v-if="typeof(data[1]) === 'string' || typeof(data[1]) === 'number' && data[0] !== 'weatherCode'" >
-            <span> {{ data[1] }} </span>
+          <div class="data-content" v-if="typeof(data[1]) === 'string' || typeof(data[1]) === 'number' && data[0] !== 'weatherCode'  && data[0] !== 'precipitationType'" >
+
+            <span> {{ data[1] }} 
+              <span v-if="data[0] == 'cloudBase' || data[0] == 'cloudCeiling'">
+                km
+              </span>
+              <span v-if="data[0] == 'cloudCover'">
+                %
+              </span>
+              <span v-if="data[0] == 'precipitationIntensity'">
+                mm/hr
+              </span>
+              <span v-if="data[0] == 'temperature' || data[0] == 'temperatureApparent'">
+                º Celcius
+              </span>
+              <span v-if="data[0] == 'windDirection'">
+                º 
+              </span>
+              <span v-if="data[0] == 'windSpeed' || data[0] == 'windGust'">
+                m/s
+              </span>
+            </span>
+          </div> 
+          <div class="data-content" v-else-if="typeof(data[1]) === 'string' || typeof(data[1]) === 'number' && data[0] === 'precipitationType'" >
+            <span> {{ precipitationTypeCode[data[1]] }} </span>
           </div> 
 
           <div class="data-content" v-else-if="typeof(data[1]) === 'string' || typeof(data[1]) === 'number' && data[0] === 'weatherCode'" >
@@ -66,7 +89,6 @@ export default {
       error: false,
       errorMessage: "Ha habido un error inesperado",
       textRows: 1,
-
       page: 0,
       dateSelector: 0,
       hourSelector: 0,
@@ -167,6 +189,13 @@ export default {
         "8002": "Mostly Cloudy and Thunderstorm",
         "8000": "Thunderstorm"
       },
+      precipitationTypeCode: {
+        "0": "N/A",
+        "1": "Rain",
+        "2": "Snow",
+        "3": "Freezing Rain",
+        "4": "Ice Pellets"
+      }
     };
   },
   props: ["data"],

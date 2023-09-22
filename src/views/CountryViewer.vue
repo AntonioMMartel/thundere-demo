@@ -19,9 +19,8 @@
 <script>
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import GeneralDataViewer from "../components/GeneralDataViewer.vue";
-
-
 import WeatherDataViewer from "../components/WeatherDataViewer.vue";
+import countries from "../assets/data/countries.json"
 
 export default {
   name: "CountryViewer",
@@ -51,26 +50,17 @@ export default {
         this.typeSelector++;
       }
     },
+    view(input, filters) {
+      for(let i = 0; i < countries.length; i++){
+        if(countries[i].countryData.General.name.common == input) {
+          return countries[i];
+        }
+      } 
+    }
   },
   beforeMount() {
-    view(this.country, this.types)
-      .then((response) => {
-        this.data = response.data;
-        this.name = this.data.General.name.common
-      })
-      .catch((error) => {
-        console.log(error);
-        this.error = "Error";
-      });
-    view(this.country, this.types)
-      .then((response) => {
-        this.data = response.data;
-        this.name = this.data.General.name.common
-      })
-      .catch((error) => {
-        console.log(error);
-        this.error = "Error";
-      });
+    this.data = this.view(this.country, this.types)
+    this.name = this.data.countryData.General.name.common
   },
 };
 </script>

@@ -5,21 +5,23 @@
       <CountrySearchInput :changeInput="input" :canFilter="false" :inputValue="input" :to="'/search'" />
       <div v-if="nothingFound" class="message"> {{ message }}</div>  
       <div class="country-view">  
-        <img ref="left" v-if="Object.keys(this.data).length > 6" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../../../svgs/ArrowLeft.svg" />
-        <div ref="grid" class="grid">
+
+        <img ref="left" v-if="Object.keys(this.data).length > 6" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../assets/svgs/ArrowLeft.svg" />
+        <div class="grid" :style="{'grid-template-columns': gridTemplateColumns, 'grid-template-rows': gridTemplateRows}">
+
           <div ref="country" v-for="(country, key) in  Object.entries(data).slice(page * 6, (page + 1) * 6)" 
           :key="key" :id="key">
-            <div v-on:click="viewCountry(country[0])" class="country-container button">
-              <img class="flag" :src="country[1]" :alt="country[0] + 'flag'">
+            <div v-on:click="viewCountry(country[1].countryData.General.name.common)" class="country-container button">
+              <img class="flag" :src="country[1].countryData.General.flags.png" :alt="country[1].countryData.General.name.common + 'flag'">
               <div class="divider">
                 <div class=" country-title">
-                  {{ country[0] }}
+                  {{ country[1].countryData.General.name.common}}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <img ref="right" v-if="Object.keys(this.data).length > 6" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../../../svgs/ArrowRight.svg" />
+        <img ref="right" v-if="Object.keys(this.data).length > 6" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../assets/svgs/ArrowRight.svg" />
       </div>
       <div v-if="Object.keys(this.data).length > 6" class="page-display">
         {{ page + 1 }}
@@ -34,16 +36,28 @@ import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 //import { search } from "../../facade/SearchFacade";
 import countries from "../assets/data/countries.json"
 
+import { ref } from 'vue'
+
 export default {
+  
   name: "SearchResults",
   components: { FadingLightsAnimation, CountrySearchInput },
   props: ["input"],
+  setup() {
+    let gridTemplateRows = ref("repeat(2, minmax(0, 1fr))");
+    let gridTemplateColumns = ref("repeat(3, minmax(0, 1fr))");
+
+    return {
+      gridTemplateRows,
+      gridTemplateColumns
+    }
+  },
   data() {
     return {
       data: [],
       page: 0,
-      message: "",
-      nothingFound: false
+      message: "No countries were found",
+      nothingFound: false,
     }
   },
   methods: {
@@ -71,62 +85,72 @@ export default {
     },
     viewCountry(input) {
       window.location.replace("/country/" + input);
+
     },
     search(input, filters) {
       let results = [];
+      const regExp = new RegExp(input + "*")
       for(let i = 0; i < countries.length; i++){
         for(let j = 0; j < countries[i].names.length; j++) {
-          if(countries[i].names[j] == input) results.push(countries[i]) 
+          if(regExp.exec(countries[i].names[j])){
+            results.push(countries[i])
+            break;
+          } 
         }
       }
-
 
       return results;
     }
   },
   beforeMount() {
     if(typeof(this.input) === "undefined" ) this.input = "";
-    search(this.input, this.$route.query.filters)
-    .then((response) => {
-      this.data = response
+    
+    this.data = this.search(this.input, this.$route.query.filters)
 
-      switch(this.shownData.length) {
+    switch(this.shownData.length) {
 
-        case 0:
-          this.nothingFound = true;
-          this.message = "Couldn't find any country matching search criteria"
-          break;
+      case 0:
+        this.nothingFound = true;
+        this.message = "Couldn't find any country matching search criteria"
+        break;
 
-        case 1:
-          this.$refs.grid.style["grid-template-columns"] = "repeat(1, minmax(0, 1fr))";
-          this.$refs.grid.style["grid-template-rows"] = "repeat(1, minmax(0, 1fr))";
-          break;
+      case 1:
+        this.gridTemplateRows = "repeat(1, minmax(0, 1fr))"
+        this.gridTemplateColumns = "repeat(1, minmax(0, 1fr))"
 
-        case 2:
-          this.$refs.grid.style["grid-template-columns"] = "repeat(2, minmax(0, 1fr))";
-          this.$refs.grid.style["grid-template-rows"] = "repeat(1, minmax(0, 1fr))";
-          break;
+        break;
 
-        case 3:
-          this.$refs.grid.style["grid-template-columns"] = "repeat(3, minmax(0, 1fr))";
-          this.$refs.grid.style["grid-template-rows"] = "repeat(1, minmax(0, 1fr))";
-          break;
+      case 2:
+        this.gridTemplateRows = "repeat(1, minmax(0, 1fr))";
+        this.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
 
-        case 4:
-          this.$refs.grid.style["grid-template-columns"] = "repeat(2, minmax(0, 1fr))";
-          this.$refs.grid.style["grid-template-rows"] = "repeat(2, minmax(0, 1fr))";
-          break;
+        //this.$refs.grid.style["grid-template-rows"] = "repeat(1, minmax(0, 1fr))";
+        //this.$refs.grid.style["grid-template-columns"] = "repeat(2, minmax(0, 1fr))";
+        break;
 
-        default:
-          this.$refs.grid.style["grid-template-columns"] = "repeat(3, minmax(0, 1fr))";
-          break;
-      }
+      case 3:
+        this.gridTemplateRows = "repeat(1, minmax(0, 1fr))";
+        this.gridTemplateColumns = "repeat(3, minmax(0, 1fr))";
+        //this.$refs.grid.style["grid-template-rows"] = "repeat(1, minmax(0, 1fr))";
+        //this.$refs.grid.style["grid-template-columns"] = "repeat(3, minmax(0, 1fr))";
+        break;
 
-      
-    })
-    .catch( (error) => {
-      console.log(error)
-    })
+      case 4:
+        this.gridTemplateRows = "repeat(2, minmax(0, 1fr))";
+        this.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
+        //this.$refs.grid.style["grid-template-rows"] = "repeat(2, minmax(0, 1fr))";
+        //this.$refs.grid.style["grid-template-columns"] = "repeat(2, minmax(0, 1fr))";
+        break;
+
+      default:
+        this.gridTemplateRows = "repeat(2, minmax(0, 1fr))";
+        this.gridTemplateColumns = "repeat(3, minmax(0, 1fr))";
+        //this.$refs.grid.style["grid-template-columns"] = "repeat(3, minmax(0, 1fr))";
+        break;
+
+    }
+
+    console.log(Object.entries(this.data).slice(this.page * 6, (this.page + 1) * 6))
 
   },
   computed: {
@@ -163,6 +187,7 @@ $primary-color-darker: #a6a6a6;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 80%
 
 }
 
@@ -188,10 +213,11 @@ $primary-color-darker: #a6a6a6;
 .grid {
   margin: 2em;
   display: grid;
-  gap: 20px;
-  width: 90%;
+  gap: 10px;
+  width: 100%;
   justify-content: center;
   justify-items: center;
+
 }
 
 .container-main {

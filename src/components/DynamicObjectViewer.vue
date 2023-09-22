@@ -1,12 +1,15 @@
 <template>
   <div class="all-container"> 
+
+
     <!-- First -->
     <div v-on:wheel="modifyPointer($event, 'First', keys)">
       <div class="nested-data-view " v-if="typeof(data[keys[pointer]]) === 'string' && data[keys[pointer]].slice(0, 8) === 'https://'" >
         <a class="word-break" :href="data[keys[pointer]] " target="null">  {{ keys[pointer] }}<!-- {{ data[keys[pointer]] }} --> </a>
         <img class="unselectable"  src="../assets/svgs/ArrowsUpDown.svg" alt="" />
       </div>
-      <div class="nested-data-view " v-else-if="typeof(data[keys[pointer]]) === 'string' || typeof(data[1]) === 'number'" >
+      <div class="nested-data-view " v-else-if="typeof(data[keys[pointer]]) === 'string' || typeof(data[keys[pointer]]) === 'number'" >
+
         {{ keys[pointer] }}: {{ data[keys[pointer]] }} 
         <img class="unselectable"  src="../assets/svgs/ArrowsUpDown.svg" alt="" />
 

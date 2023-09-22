@@ -1,14 +1,19 @@
 <template>
+
   <div class="all-container">
+    
     <div v-on:wheel="modifyPointer($event, 'Date', dateKeys)" class="selector date-selector"> 
       {{ dateKeys[dateSelector] }}
     </div>
-    <img v-if="Object.keys(hourData).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../../../svgs/ArrowLeft.svg" />
+    <img v-if="Object.keys(hourData).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../assets/svgs/ArrowLeft.svg" />
     <div class="flex">
       <div v-if="data" class="data-container">
+
+
         <div class="data-view" v-for="(data, key) in  Object.entries(hourData).slice(page * 8, (page + 1) * 8)" 
               :key="key" :id="key">
           <div class="data-title"> {{ putSpaces(data[0]) }} </div>
+
 
           <div class="data-content" v-if="data[1] === null">
             No data has been found
@@ -30,7 +35,7 @@
             <DynamicArrayViewer :array="data[1]"></DynamicArrayViewer> 
           </div>
 
-          <div class="data-content-object" v-else-if="typeof(data[1]) === 'object'">
+          <div class="data-content-object" v-else-if="typeof(data[1]) === 'object' && data[1] !== null">
             <DynamicObjectViewer :data="data[1]"></DynamicObjectViewer> 
           </div>
         </div>  
@@ -43,7 +48,7 @@
     <div v-on:wheel="modifyPointer($event, 'Hour', hourKeys)" class="selector hour-selector">
       {{ hourKeys[hourSelector] }}
     </div>
-    <img v-if="Object.keys(hourData).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../../../svgs/ArrowRight.svg" />
+    <img v-if="Object.keys(hourData).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../assets/svgs/ArrowRight.svg" />
     
   </div>
   
@@ -269,6 +274,8 @@ $primary-color-darker: #a6a6a6;
 .all-container {
   display: flex;
   flex-direction: row;
+
+
 }
 
 .data-content-array {

@@ -61,6 +61,7 @@ export default {
   beforeMount() {
     this.data = this.view(this.country, this.types).countryData
     this.name = this.data.General.name.common
+
   },
 };
 </script>

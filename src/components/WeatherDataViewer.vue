@@ -53,6 +53,7 @@
 import DynamicArrayViewer from './DynamicArrayViewer.vue';
 import DynamicObjectViewer from './DynamicObjectViewer.vue';
 
+
 export default {
   name: "GeneralDataViewer",
   data() {
@@ -60,6 +61,7 @@ export default {
       error: false,
       errorMessage: "Ha habido un error inesperado",
       textRows: 1,
+
       page: 0,
       dateSelector: 0,
       hourSelector: 0,
@@ -217,6 +219,7 @@ export default {
 
       }
     }
+
   },
   components: { DynamicArrayViewer, DynamicObjectViewer },
   computed: {
@@ -235,38 +238,6 @@ export default {
     hourData() {
       return this.hours[this.hourKeys[this.hourSelector]]
     }
-  },
-  mounted() {
-    const today = new Date();
-
-    // Today date
-    const month = today.getMonth() + 1; 
-    const day = today.getDate();
-    const todayDate = today.getFullYear() + "-" + 
-                      (month>9 ? '' : '0') + month + "-" +
-                      (day>9 ? '' : '0') + day
-
-    // Timezone offset in hours
-    const timezoneOffset = today.getTimezoneOffset() / 60;
-
-    // Current hour
-    this.currentHour = ((today.getHours() + timezoneOffset) > 23?
-                            (today.getHours() + timezoneOffset) - 23 : 
-                            (today.getHours() + timezoneOffset < 0?
-                              today.getHours() + timezoneOffset + 23:
-                              today.getHours() + timezoneOffset
-                            ) 
-                        ) + ":00:00"
-
-    // Auxilliary functions
-    const isTodayDate = (element) => element === todayDate;
-    const isCurrentHour = (element) => element === this.currentHour;
-
-
-    // Set selectors to client time
-    this.dateSelector = this.dateKeys.findIndex(isTodayDate);
-
-    this.hourSelector = this.hourKeys.findIndex(isCurrentHour);
   }
 };
 </script>

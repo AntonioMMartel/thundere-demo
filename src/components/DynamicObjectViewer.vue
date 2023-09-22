@@ -159,11 +159,11 @@ export default {
   },
   computed: {
     secondKeys() {
-      console.log("Second keys")
+
       return this.getKeys(this.data[this.keys[this.pointer]]);
     },
     secondData() {
-      console.log("Second Data")
+
       return this.data[this.keys[this.pointer]];
     },
     thirdKeys() {

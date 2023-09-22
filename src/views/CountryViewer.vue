@@ -5,9 +5,9 @@
       <div class="container-ui">
         <div data-test="title" class="title capitalize">{{ name || "Loading" }}</div>
         <div class="select-container">
-          <img v-on:click="moveTypeSelectorBackwards()" class="arrow button" src="../../../svgs/ArrowLeft.svg" />
+          <img v-on:click="moveTypeSelectorBackwards()" class="arrow button" src="../assets/svgs/ArrowLeft.svg" />
           <div class="select texto">{{  types[typeSelector] || "Loading data..." }}</div>
-          <img v-on:click="moveTypeSelectorForwards()" class="arrow button" src="../../../svgs/ArrowRight.svg" />
+          <img v-on:click="moveTypeSelectorForwards()" class="arrow button" src="../assets/svgs/ArrowRight.svg" />
         </div>
         <GeneralDataViewer v-if="types[typeSelector] ==='General'" :data="data['General']"></GeneralDataViewer>
         <WeatherDataViewer v-if="types[typeSelector] ==='Weather'" :data="data['Weather']"></WeatherDataViewer>
@@ -59,8 +59,8 @@ export default {
     }
   },
   beforeMount() {
-    this.data = this.view(this.country, this.types)
-    this.name = this.data.countryData.General.name.common
+    this.data = this.view(this.country, this.types).countryData
+    this.name = this.data.General.name.common
   },
 };
 </script>

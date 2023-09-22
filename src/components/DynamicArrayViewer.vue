@@ -1,7 +1,7 @@
 <template>
   <span data-test="dataValue" v-on:wheel="modifyPointer($event)" class="container">
     {{ this.array[this.pointer] }}
-    <img class="unselectable" src="../../../svgs/ArrowsUpDown.svg" alt="" />
+    <img class="unselectable" src="../assets/svgs/ArrowsUpDown.svg" alt="" />
   </span>
 </template>
 
@@ -42,8 +42,9 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+
 }
 
 .unselectable {

@@ -1,10 +1,10 @@
 <template>
   <div class="all-container">
-    <img v-if="Object.keys(this.data).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../../../svgs/ArrowLeft.svg" />
+    <img v-if="Object.keys(this.data).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../assets/svgs/ArrowLeft.svg" />
     <div class="flex">
 
       <div v-if="data" class="data-container">
-        <div class="data-view" v-for="(data, key) in  Object.entries(data).slice(page * 8, (page + 1) * 8)" 
+        <div class="data-view" v-for="(data, key) in Object.entries(data).slice(page * 8, (page + 1) * 8)" 
               :key="key" :id="key">
           <div class="data-title"> {{ data[0] }} 
           </div>
@@ -28,7 +28,7 @@
         {{ page + 1 }}
       </div>
     </div>
-    <img v-if="Object.keys(this.data).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../../../svgs/ArrowRight.svg" />
+    <img v-if="Object.keys(this.data).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../assets/svgs/ArrowRight.svg" />
   </div>
 </template>
 
@@ -53,15 +53,18 @@ export default {
         this.page = Math.ceil(Object.keys(this.data).length / 8) - 1;
       } else {
         this.page--;
+
       }
     },
-    increasePageCounter() {
+    async increasePageCounter() {
       if (this.page + 1 >= Math.ceil(Object.keys(this.data).length / 8)) {
         this.page = 0;
       } else {
         this.page++;
+
       }
     },
+
 
     },
     components: { DynamicArrayViewer, DynamicObjectViewer }

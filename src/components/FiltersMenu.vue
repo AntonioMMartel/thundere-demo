@@ -1,9 +1,9 @@
 <template>
   <div class="filters-container">
-    <img v-if="dataIsPrepared" v-on:click="addNewFilter()" class="add button" src="../../../svgs/add.svg" />
+    <img v-if="dataIsPrepared" v-on:click="addNewFilter()" class="add button" src="../assets/svgs/add.svg" />
     <div v-if="dataIsPrepared" class="filters-grid">
-      <div ref="filters" v-if="filters[key]" :class="filterClass" v-for="(index, key) in filters" :key="key">
-        <FilterInstance  ref="key" @filterChanged="filterChanged" @deleteFilter="deleteFilter" :data="data" :index="key"></FilterInstance>
+      <div ref="filters" :class="filterClass" v-for="(index, key) in filters" :key="key">
+        <FilterInstance v-if="filters[key]" ref="key" @filterChanged="filterChanged" @deleteFilter="deleteFilter" :data="data" :index="key"></FilterInstance>
       </div>
     </div>
   </div>
@@ -11,8 +11,7 @@
 
 <script>
 import FilterInstance from "./FilterInstance.vue";
-import { view } from "../facade/SearchFacade";
-
+import countries from "../assets/data/countries.json"
 export default {
   name: "FiltersMenu",
   data() {
@@ -39,9 +38,11 @@ export default {
       if(this.filters.indexOf(false) !== -1) {
         this.filters.splice(this.filters.length)
         this.filters[this.filters.indexOf(false)] = true
+
       }
-    } ,
+    },
     deleteFilter(index) {
+      console.log("Siii")
       this.filters.splice(this.filters.length)
       this.filters[index] = false
     },
@@ -53,18 +54,20 @@ export default {
       this.$set(this.filterData[index], 'condition', filterData.condition)
       this.$set(this.filterData[index], 'userInput', filterData.userInput)
       this.$emit("filterChanged", this.filterData)
+    },
+    view(input, filters) {
+      for(let i = 0; i < countries.length; i++){
+        if(countries[i].countryData.General.name.common == input) {
+          return countries[i];
+        }
+      } 
     }
   },
   beforeMount() {
-    view("Morocco", ["General", "Weather"])
-      .then((response) => {
-        this.data = response.data;
-        this.dataIsPrepared = true
-      })
-      .catch((error) => {
-        console.log(error);
-        this.error = "Error";
-      });
+    // view("Morocco", ["General", "Weather"])
+    this.data = this.view("Morocco").countryData
+    this.dataIsPrepared = true;
+
   },
   components: { FilterInstance }
 };
@@ -91,8 +94,9 @@ $primary-color-darker: #a6a6a6;
 
 .add {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
+  padding: 8px;
   border-radius: 100px;
   background-color: rgba(255, 255, 255, 0.1);
   &:hover {

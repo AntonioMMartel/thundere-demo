@@ -17,9 +17,9 @@
 </template>
 
 <script>
+import WeatherDataViewer from "../components/WeatherDataViewer.vue";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import GeneralDataViewer from "../components/GeneralDataViewer.vue";
-import WeatherDataViewer from "../components/WeatherDataViewer.vue";
 import countries from "../assets/data/countries.json"
 
 export default {
@@ -41,7 +41,6 @@ export default {
       } else {
         this.typeSelector--;
       }
-
     },
     moveTypeSelectorForwards() {
       if (this.typeSelector + 1 >= this.types.length) {
@@ -61,7 +60,6 @@ export default {
   beforeMount() {
     this.data = this.view(this.country, this.types).countryData
     this.name = this.data.General.name.common
-
   },
 };
 </script>

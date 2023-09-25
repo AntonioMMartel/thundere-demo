@@ -3,6 +3,7 @@
   <div class="all-container">
     
     <div v-on:wheel="modifyPointer($event, 'Date', dateKeys)" class="selector date-selector"> 
+      <div class="separed">Date</div>
       {{ dateKeys[dateSelector] }}
     </div>
     <img v-if="Object.keys(hourData).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="../assets/svgs/ArrowLeft.svg" />
@@ -69,6 +70,7 @@
       </div>
     </div>
     <div v-on:wheel="modifyPointer($event, 'Hour', hourKeys)" class="selector hour-selector">
+      <div class="separed">Date</div>
       {{ hourKeys[hourSelector] }}
     </div>
     <img v-if="Object.keys(hourData).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="../assets/svgs/ArrowRight.svg" />
@@ -281,6 +283,10 @@ export default {
 $primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
 $primary-color-darker: #a6a6a6;
 
+
+.separed {
+  margin-bottom: 7px
+}
 .selector {
   position: absolute;
   right: 0;
@@ -293,6 +299,7 @@ $primary-color-darker: #a6a6a6;
 }
 
 .date-selector {
+  top: 22vh;
   left: 25vw;
 }
 

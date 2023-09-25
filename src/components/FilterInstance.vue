@@ -26,7 +26,7 @@
     </select>
 
     <div class="options">
-      <input ref="dateInput" @change="changeSelectedDate" v-if="selectedType === 'Weather'" type="date">
+      <input class="invisible" ref="dateInput" @change="changeSelectedDate" v-if="selectedType === 'Weather'" type="date">
       <div v-if="selectedType === 'Weather'" class="filter-option">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#dbdbdb" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -38,7 +38,7 @@
         </svg>
       </div>
       <div class="filter-option">
-        <img class="delete-icon" @click="deleteFilter" src="../../../svgs/Trash.svg" alt="Delete filter" />
+        <img class="delete-icon" @click="deleteFilter" src="../assets/svgs/Trash.svg" alt="Delete filter" />
       </div>
       <div @wheel="changeHour($event)" v-if="selectedType === 'Weather'" class="filter-option">{{ americanStyleHour }}</div>
     </div>
@@ -46,6 +46,9 @@
 </template>
 
 <script>
+
+import {ref} from 'vue';
+
 export default {
   name: "FilterInstance",
   data() {
@@ -63,7 +66,7 @@ export default {
       userInput: "",
       selectedDataKey: 0,
       filterType: "object",
-      selectedHour: 0,
+      selectedHour: ref(0),
       selectedDate: "",
       sampleWeatherData: {
                           cloudBase: 7.03,
@@ -82,6 +85,7 @@ export default {
   props: ["index", "data"],
   methods: {
     changeHour(event) {
+
       // Hacia arriba
       if (event.deltaY < 0) {
         if (this.selectedHour + 1 >= 23) {
@@ -184,9 +188,11 @@ export default {
     this.updateFilter()
   },
   computed: {
-    americanStyleHour() {      
-      return this.selectedHour > 12? this.selectedHour - 12 + "pm" : 
+    americanStyleHour: {    
+      get() {
+        return this.selectedHour > 12? this.selectedHour - 12 + "pm" : 
               this.selectedHour === 0? "12pm": this.selectedHour + "am"
+      }
     },
     selectedDataKeys() {
       return Object.keys(this.data[this.selectedType]);
@@ -275,6 +281,10 @@ input[type="date"] {
   max-width: 33%;
   min-width: 33%;
   
+}
+
+.invisible {
+  opacity: 0;
 }
 .options {
   display: flex;

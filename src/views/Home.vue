@@ -4,7 +4,7 @@
     <div class="container-ui">
       <div data-test="title" class="title"> Thundere </div>
       <CountrySearchInput :filters="filters" :canFilter="true" :to="'/search'" />
-      <!--<FiltersMenu @filterChanged="filterChanged"></FiltersMenu>-->
+      <FiltersMenu @filterChanged="filterChanged"></FiltersMenu>
     </div>
   </div>
 </template>
@@ -12,11 +12,11 @@
 <script>
 import CountrySearchInput from "../components/CountrySearchInput.vue";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
-//import FiltersMenu from "../components/FiltersMenu.vue";
+import FiltersMenu from "../components/FiltersMenu.vue";
 
 export default {
   name: "Home",
-  components: { FadingLightsAnimation, CountrySearchInput, /* FiltersMenu*/ },
+  components: { FadingLightsAnimation, CountrySearchInput, FiltersMenu },
   data () {
     return {
       filters: []
@@ -26,9 +26,7 @@ export default {
     filterChanged(filters) {
       this.filters = filters
     }
-
   },
-  
 };
 </script>
 

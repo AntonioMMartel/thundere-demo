@@ -111,9 +111,7 @@ export default {
             this.pointer--;
           }
         }
-      
       } else if(pointerSelector === "Second"){
-
         if (event.deltaY < 0) {
           if (this.secondPointer + 1 >= keys.length) {
             this.secondPointer = 0;
@@ -127,9 +125,7 @@ export default {
             this.secondPointer--;
           }
         }
-
       } else if (pointerSelector === "Third") {
-
         if (event.deltaY < 0) {
           if (this.thirdPointer + 1 >= keys.length) {
             this.thirdPointer = 0;
@@ -143,8 +139,6 @@ export default {
             this.thirdPointer--;
           }
         }
-
-
       }
     },
     getKeys(data) {

@@ -38,7 +38,6 @@ export default {
       if(this.filters.indexOf(false) !== -1) {
         this.filters.splice(this.filters.length)
         this.filters[this.filters.indexOf(false)] = true
-
       }
     },
     deleteFilter(index) {
@@ -49,10 +48,15 @@ export default {
     filterChanged(filterData, index) {
       // me lo enchufas en el array de filtros
       this.filterData[index] = filterData;
-      this.$set(this.filterData[index], 'type', filterData.type)
-      this.$set(this.filterData[index], 'filter', filterData.filter)
-      this.$set(this.filterData[index], 'condition', filterData.condition)
-      this.$set(this.filterData[index], 'userInput', filterData.userInput)
+      this.filterData[index].type = filterData.type
+      this.filterData[index].filter = filterData.filter
+      this.filterData[index].condition = filterData.condition
+      this.filterData[index].userInput = filterData.userInput
+
+      // this.$set(this.filterData[index], 'type', filterData.type)
+      // this.$set(this.filterData[index], 'filter', filterData.filter)
+      // this.$set(this.filterData[index], 'condition', filterData.condition)
+      // this.$set(this.filterData[index], 'userInput', filterData.userInput)
       this.$emit("filterChanged", this.filterData)
     },
     view(input, filters) {
@@ -60,7 +64,7 @@ export default {
         if(countries[i].countryData.General.name.common == input) {
           return countries[i];
         }
-      } 
+      }
     }
   },
   beforeMount() {

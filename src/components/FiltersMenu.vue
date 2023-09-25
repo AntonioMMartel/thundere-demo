@@ -1,6 +1,6 @@
 <template>
   <div class="filters-container">
-    <img v-if="dataIsPrepared" v-on:click="addNewFilter()" class="add button" src="../assets/svgs/add.svg" />
+    <img v-if="dataIsPrepared" v-on:click="addNewFilter()" :style="{'opacity': addFilterButtonOpacity, 'cursor': addFilterButtonCursor}" class="add button" src="../assets/svgs/add.svg" />
     <div v-if="dataIsPrepared" class="filters-grid">
       <div ref="filters" :class="filterClass" v-for="(index, key) in filters" :key="key">
         <FilterInstance v-if="filters[key]" ref="key" @filterChanged="filterChanged" @deleteFilter="deleteFilter" :data="data" :index="key"></FilterInstance>
@@ -29,21 +29,34 @@ export default {
                 ],
       filterData: [{}],
       data: {},
+      addFilterButtonOpacity: 1,
+      addFilterButtonCursor: "pointer",
       dataIsPrepared: false,
       filterClass: "filter"
     };
   },
   methods: {
     addNewFilter() {
+      
       if(this.filters.indexOf(false) !== -1) {
         this.filters.splice(this.filters.length)
         this.filters[this.filters.indexOf(false)] = true
       }
+      this.checkFilters()
+    },
+    checkFilters(){
+      if(this.filters.indexOf(false) == -1){
+        this.addFilterButtonOpacity = 0
+        this.addFilterButtonCursor = 'auto'
+      } 
     },
     deleteFilter(index) {
-      console.log("Siii")
       this.filters.splice(this.filters.length)
       this.filters[index] = false
+      if(this.addFilterButtonOpacity == 0) {
+        this.addFilterButtonOpacity = 1
+        this.addFilterButtonCursor = 'pointer'
+      }
     },
     filterChanged(filterData, index) {
       // me lo enchufas en el array de filtros
@@ -53,10 +66,6 @@ export default {
       this.filterData[index].condition = filterData.condition
       this.filterData[index].userInput = filterData.userInput
 
-      // this.$set(this.filterData[index], 'type', filterData.type)
-      // this.$set(this.filterData[index], 'filter', filterData.filter)
-      // this.$set(this.filterData[index], 'condition', filterData.condition)
-      // this.$set(this.filterData[index], 'userInput', filterData.userInput)
       this.$emit("filterChanged", this.filterData)
     },
     view(input, filters) {
@@ -108,8 +117,6 @@ $primary-color-darker: #a6a6a6;
   }
 }
 
-.button {
-  cursor: pointer;
-}
+
 
 </style>

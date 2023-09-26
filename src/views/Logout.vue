@@ -2,7 +2,7 @@
     <article>
         <div class="container-main">
 
-            Iconito / Gif crema de cargando
+            Loading...
             
         </div>
     </article>
@@ -11,8 +11,16 @@
 <script>
 export default {
     created () {
-        window.location.reload()
+        this.logout();
+        window.location.replace("/");
+    },
+    methods: {
+        logout() {
+            return document.cookie = "userRole=none; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
+        //return sessionStorage.removeItem("userRole");
+        }
     }
+
 }
 </script>
 

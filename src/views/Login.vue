@@ -11,7 +11,7 @@
           <label class="form-label" for="#password">Password:</label>
           <input data-test="input" v-model="password" name="password" class="form-input" type="password" id="password" placeholder="Password" />
 
-          <p v-if="error" class="error">{{ errorMessage }}</p>
+          <div v-if="error" class="error">{{ errorMessage }}</div>
           <input data-test="submit" class="form-submit" type="submit" value="Login" />
 
           <!-- <input type="hidden" name="_csrf_token"> -->
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-//import { login } from "../../facade/AuthorizationFacade";
+import users from "../assets/data/users.json"
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 
 export default {
@@ -30,28 +30,25 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    error: false,
+    error: true,
     errorMessage: "",
     loginSuccess: null,
   }),
   methods: {
-    // Pq funciona esto?
-    // Symfony no está renderizando vue. Solo renderiza la primera pg y desde ahi vue se busca la vida
-    // La autenticación en Symfony funciona con eventos QUE SE EJECUTAN CUANDO SE RENDERIZAN PAGS EN SYMFONY
-    // Basicamente cuando la autenticación es exitosa recargamos el componente llamando a symfony de nuevo.
-    login() {
-      login(this.email, this.password, this._csrf_token)
-        .then((response) => {
-          this.reloadComponent();
-          window.location.replace("/");
-        })
-        .catch((error) => {
-          this.error = true;
-          this.errorMessage = error;
-        });
-      // Deberia redirigir a algo de confirmar usuario con su codigo wapo
-    },
 
+    login() {
+      for(let i = 0; i < users.length; i++) {
+        if(this.email === users[i].email && this.password === users[i].password) {
+          this.setUserRole(users[i].role)
+          window.location.replace("/");
+        }
+      }
+      this.errorMessage = "Login attempt failed"
+    },
+    setUserRole(role) {
+      return document.cookie = "userRole=" + role + "; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
+      //return sessionStorage.setItem("userRole", role);
+    },
     reloadComponent() {
       this.$forceUpdate(); // Recargamos el componente -> Se vuelve a llamar a symfony
     },
@@ -65,6 +62,15 @@ export default {
 
 $primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
 $primary-color-darker: #a6a6a6;
+
+.error {
+  padding: 20px;
+  height: 0px;
+  text-align: center;
+  justify-content: center;
+  color: #dc3545;
+  font-weight: 500;
+}
 
 .login {
   height: 77.5vh;
@@ -111,7 +117,7 @@ $primary-color-darker: #a6a6a6;
   background-color: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 7px;
-  margin-top: 3rem;
+  margin-top: 1em;
   padding: 1rem 0;
   cursor: pointer;
   transition: background 0.2s;

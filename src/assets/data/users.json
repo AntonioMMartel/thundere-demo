@@ -3,10 +3,7 @@
     "$oid": "62acf4418f5800b5d20b9204"
   },
   "email": "admin@gmail.com",
-  "roles": [
-    "ROLE_USER",
-    "ROLE_ADMIN"
-  ],
+  "role": "admin",
   "password": "123",
   "name": "Administrador",
   "confirmation_code": "temp",
@@ -22,9 +19,7 @@
     "$oid": "62acf56f8f5800b5d20b9205"
   },
   "email": "Guest@email.com",
-  "roles": [
-    "ROLE_USER"
-  ],
+  "role": "user",
   "password": "123",
   "name": "Guest",
   "confirmation_code": "temp",
@@ -40,9 +35,7 @@
     "$oid": "62d9a19ddc4430b9b001fe45"
   },
   "email": "prueba@email.com",
-  "roles": [
-    "ROLE_USER"
-  ],
+  "role": "user",
   "password": "123",
   "name": "Prueba",
   "confirmation_code": "temp",

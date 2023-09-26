@@ -18,7 +18,7 @@
               <label data-test="passwordRepeat" class="form-label" for="#password-repeat"> Repeat your password:</label>
               <input data-test="input" minlength="8" v-model="passwordRepeat" class="form-input" type="password" id="password-repeat" placeholder="Password">
 
-              <p v-if="error" class="error"> {{ errorMessage }} </p>
+              <div v-if="error" class="error">{{ errorMessage }}</div>
               <input data-test="submit" class="form-submit" type="submit" value="Register">
           </form>
       </div>

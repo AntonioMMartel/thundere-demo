@@ -28,11 +28,15 @@ import NavButton from './NavButton.vue'
         }),
         components: { NavButton },
         props:["userRole"],
+        onMount() {
+
+        },
         computed: {
             navButtonsDisplay: function() {
                 let navButtonsRole = [];
+                
 
-                // Mira si el botón está destinado a ese usuario. Si no lo está lo quita
+                // Mira si el botón está destinado a ese usuario. Si no lo está no lo pone
                 for(let key in this.navButtons) {
                     if (this.navButtons[key].forRole == this.userRole || this.navButtons[key].forRole == "all"){
                         navButtonsRole.push(this.navButtons[key]);

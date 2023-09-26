@@ -11,7 +11,9 @@
           <label class="form-label" for="#password">Password:</label>
           <input data-test="input" v-model="password" name="password" class="form-input" type="password" id="password" placeholder="Password" />
 
-          <div v-if="error" class="error">{{ errorMessage }}</div>
+          <div class="error">
+            <span v-if="error"> {{ errorMessage }} </span>
+          </div>
           <input data-test="submit" class="form-submit" type="submit" value="Login" />
 
           <!-- <input type="hidden" name="_csrf_token"> -->
@@ -30,20 +32,22 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    error: true,
-    errorMessage: "",
+    error: false,
+    errorMessage: "Login attempt failed",
     loginSuccess: null,
   }),
   methods: {
 
     login() {
+      this.error = false
       for(let i = 0; i < users.length; i++) {
         if(this.email === users[i].email && this.password === users[i].password) {
           this.setUserRole(users[i].role)
           window.location.replace("/");
+          return;
         }
       }
-      this.errorMessage = "Login attempt failed"
+      this.error = true
     },
     setUserRole(role) {
       return document.cookie = "userRole=" + role + "; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close

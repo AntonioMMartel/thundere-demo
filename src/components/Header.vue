@@ -25,10 +25,28 @@ import NavButton from './NavButton.vue'
                 {id: 7, label: "Sign out", href:"/logout", forRole:"admin" },
                 {id: 8, label: "Admin", href:"/admin", forRole:"admin" },
             ],
+            userRole: ""
         }),
         components: { NavButton },
-        props:["userRole"],
-        onMount() {
+          mounted () {
+            if(this.getUserRole() === ""){
+            this.setUserRole("none")
+            }
+
+            this.userRole = this.getUserRole()
+        },
+        methods: {
+            filterChanged(filters) {
+            this.filters = filters
+            },
+            getUserRole() {
+            return document.cookie.substring(9)
+            // return sessionStorage.getItem("userRole");
+            },
+            setUserRole(role) {
+            return document.cookie = "userRole=" + role + "; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
+            //return sessionStorage.setItem("userRole", role);
+            }
 
         },
         computed: {

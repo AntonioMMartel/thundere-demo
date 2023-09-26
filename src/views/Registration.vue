@@ -5,7 +5,6 @@
       <div class="login">
           <h1 data-test="title" class="title"> Make an account</h1>
           <form class="form" @submit.prevent="register">
-
               <label data-test="username" class="form-label" for="#username">Username:</label>
               <input data-test="input" v-model="username" class="form-input" id="username" required placeholder="Username">
 
@@ -18,8 +17,8 @@
               <label data-test="passwordRepeat" class="form-label" for="#password-repeat"> Repeat your password:</label>
               <input data-test="input" minlength="8" v-model="passwordRepeat" class="form-input" type="password" id="password-repeat" placeholder="Password">
 
-              <div v-if="error" class="error">{{ errorMessage }}</div>
-              <input data-test="submit" class="form-submit" type="submit" value="Register">
+              <div v-if="error" class="error"> {{ errorMessage }}</div>
+              <input disabled data-test="submit" class="form-submit" type="submit" value="Register">
           </form>
       </div>
     </div>
@@ -35,14 +34,12 @@ export default {
     password: "",
     passwordRepeat: "",
     username: "",
-    error: false,
-    errorMessage: ""
+    error: true,
+    errorMessage: "The register feature is disabled"
   }),
   methods: {
     register() {
-      register(this.email, this.username, this.password)
-      .then(response => {console.log(response); window.location.replace('/login');})
-      .catch((error) => { this.error=true; this.errorMessage=error});
+      
       // Deberia redirigir a algo de confirmar usuario con su codigo que le llega al email
     }
   },
@@ -55,6 +52,14 @@ export default {
 $primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
 $primary-color-darker: #a6a6a6;
 
+.error {
+  padding: 20px;
+  height: 0px;
+  text-align: center;
+  justify-content: center;
+  color: #dc3545;
+  font-weight: 500;
+}
 .login {
   height: 77.5vh;
   color: $primary-color;
@@ -99,16 +104,18 @@ $primary-color-darker: #a6a6a6;
   }
 }
 .form-submit {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 7px;
   border: none;
   color: white;
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 1rem 0;
   cursor: pointer;
   transition: background 0.2s;
+  user-select: none;
   &:hover {
-    background-color: rgba(0, 225, 255, 0.4);
+    cursor: auto;
+    user-select: none;
   }
 }
 

@@ -22,11 +22,28 @@ export default {
       filters: []
     }
   },
+  mounted () {
+    if(this.getUserRole() === ""){
+      this.setUserRole("none")
+    }
+
+    this.userRole = this.getUserRole()
+  },
   methods: {
     filterChanged(filters) {
       this.filters = filters
+    },
+    getUserRole() {
+      return document.cookie.substring(9)
+      // return sessionStorage.getItem("userRole");
+    },
+    setUserRole(role) {
+      return document.cookie = "userRole=" + role + "; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
+      //return sessionStorage.setItem("userRole", role);
     }
+
   },
+
 };
 </script>
 

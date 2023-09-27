@@ -54,7 +54,19 @@ export default {
         if(countries[i].countryData.General.name.common == input) {
           return countries[i];
         }
-      } 
+      }
+      return this.search(input)
+    },
+    search(input, filters) {
+      const regExp = new RegExp(input + "*")
+      for(let i = 0; i < countries.length; i++){
+        for(let j = 0; j < countries[i].names.length; j++) {
+          if(regExp.exec(countries[i].names[j])){
+            return countries[i]
+          } 
+        }
+      }
+      return {};
     }
   },
   beforeMount() {

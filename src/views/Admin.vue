@@ -12,15 +12,15 @@
     <FadingLightsAnimation />
     <div class="container-ui">
       <div class="select-container">
-        <img data-test="moveTargetBackwards" v-on:click="moveTargetBackwards()" class="arrow button" src="../../../svgs/ArrowLeft.svg" />
+        <img data-test="moveTargetBackwards" v-on:click="moveTargetBackwards()" class="arrow button" src="../assets/svgs/ArrowLeft.svg" />
         <div data-test="selectedTarget" class="select capitalize title">{{ targets[targetSelector] }}</div>
-        <img data-test="moveTargetForwards" v-on:click="moveTargetForwards()" class="arrow button" src="../../../svgs/ArrowRight.svg" />
+        <img data-test="moveTargetForwards" v-on:click="moveTargetForwards()" class="arrow button" src="../assets/svgs/ArrowRight.svg" />
       </div>
       <table data-test="countriesTable" v-if="targets[targetSelector] == 'Countries'">
         <thead>
           <tr>
             <th>Code</th>
-            <th>Name</th>
+            <th class="name-col">Name</th>
             <th>Data</th>
             <th>Actions</th>
           </tr>
@@ -43,18 +43,18 @@
                     true)
                   "
                   class="unselectable button"
-                  src="../../../svgs/EditButton.svg"
+                  src="../assets/svgs/EditButton.svg"
                 />
-                <img v-on:click="deleteCountry(country._id.$oid, index)" class="unselectable button" src="../../../svgs/Trashcan.svg" />
+                <img v-on:click="deleteCountry(country._id.$oid, index)" class="unselectable button" src="../assets/svgs/Trashcan.svg" />
               </div>
             </td>
           </tr>
           <tr>
             <td v-on:wheel="changePageOnScroll($event)" class="unselectable" colspan="100%">
               <div class="page-display">
-                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="../../../svgs/ArrowLeft.svg" />
+                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowLeft.svg" />
                 {{ page + 1 }}
-                <img v-on:click="increasePageCounter()" class="page-arrow button" src="../../../svgs/ArrowRight.svg" />
+                <img v-on:click="increasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowRight.svg" />
               </div>
             </td>
           </tr>
@@ -97,29 +97,29 @@
                     true)
                   "
                   class="unselectable button"
-                  src="../../../svgs/EditButton.svg"
+                  src="../assets/svgs/EditButton.svg"
                 />
-                <img v-on:click="deleteUser(user._id.$oid)" class="unselectable button" src="../../../svgs/Trashcan.svg" />
+                <img v-on:click="deleteUser(user._id.$oid)" class="unselectable button" src="../assets/svgs/Trashcan.svg" />
               </div>
             </td>
           </tr>
           <tr>
             <td v-on:wheel="changePageOnScroll($event)" class="unselectable" colspan="100%">
               <div class="page-display">
-                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="../../../svgs/ArrowLeft.svg" />
+                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowLeft.svg" />
                 {{ page + 1 }}
-                <img v-on:click="increasePageCounter()" class="page-arrow button" src="../../../svgs/ArrowRight.svg" />
+                <img v-on:click="increasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowRight.svg" />
               </div>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <img data-test="addButton" v-on:click="openDialog({}, 0, false)" class="add button" src="../../../svgs/add.svg" />
+      <img data-test="addButton" v-on:click="openDialog({}, 0, false)" class="add button" src="../assets/svgs/add.svg" />
         <div v-if="targets[targetSelector] == 'Countries'" class="select-container"> 
-          <img v-on:click="moveDialogModeBackwards()" class="arrow button" src="../../../svgs/ArrowLeft.svg" />
+          <img v-on:click="moveDialogModeBackwards()" class="arrow button" src="../assets/svgs/ArrowLeft.svg" />
           <div class="sub-title">{{ dialogModes[selectedDialogMode] }} </div>
-          <img v-on:click="moveDialogModeForwards()" class="arrow button" src="../../../svgs/ArrowRight.svg" />
+          <img v-on:click="moveDialogModeForwards()" class="arrow button" src="../assets/svgs/ArrowRight.svg" />
         </div>
     </div>
   </div>
@@ -129,7 +129,9 @@
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import DynamicArrayViewer from "../components/DynamicArrayViewer.vue";
 import UpdateDialog from "../components/UpdateDialog.vue";
-//import { getAllCountries, deleteCountryByID, getAllUsers, deleteUserByID,addAllCountries } from "../../facade/AdminFacade.js";
+import countries from "../assets/data/countries.json"
+import users from "../assets/data/users.json"
+//import { getAllCountries, deleteCountryByID, getAllUsers, deleteUserByID, addAllCountries } from "../../facade/AdminFacade.js";
 export default {
   name: "Admin",
   components: { FadingLightsAnimation, DynamicArrayViewer, UpdateDialog },
@@ -159,20 +161,10 @@ export default {
   },
   methods: {
     getAllCountries() {
-      getAllCountries()
-      .then((response) => {
-        this.data["Countries"] = response.data.countries;
-      })
-      .catch((error) => {
-      });
+      this.data["Countries"] = countries
     },
     getAllUsers() {
-      getAllUsers()
-      .then((response) => {
-        this.data["Users"] = response.data.users;
-      })
-      .catch((error) => {
-      });
+      this.data["Users"] = users
     },
 
     deleteCountry(id, key) {
@@ -425,11 +417,11 @@ td {
   color: #fff;
   max-width: 20vw;
   word-wrap: break-word;
-
+  text-align: center;
 }
 
 th {
-  text-align: left;
+  text-align: center;
 }
 
 thead {

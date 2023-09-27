@@ -44,7 +44,7 @@ import NavButton from './NavButton.vue'
             // return sessionStorage.getItem("userRole");
             },
             setUserRole(role) {
-            return document.cookie = "userRole=" + role + "; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
+            return document.cookie = "userRole=" + role + "; max-age=1000*60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
             //return sessionStorage.setItem("userRole", role);
             }
 

@@ -50,7 +50,8 @@ export default {
       this.error = true
     },
     setUserRole(role) {
-      return document.cookie = "userRole=" + role + "; max-age=60*60*6, path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
+      var expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000)
+      return document.cookie = "userRole=" + role + ";expires=" + expiryDate +", path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
       //return sessionStorage.setItem("userRole", role);
     },
     reloadComponent() {

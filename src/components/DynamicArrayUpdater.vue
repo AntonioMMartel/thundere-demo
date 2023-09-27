@@ -10,7 +10,7 @@
       <div data-test="addElementButton" v-if="showingOptionsMenu" v-on:click="startAddingNewElement()" class="bubble up" > + </div>
     </div>
     <input data-test="updateValueInput" name="input" id="form-input" type="text" :value="this.array[this.pointer]" />
-    <img data-test="confirmButton" v-on:click="confirmChanges()" class="confirm-button" src="../../../svgs/Tic.svg" />
+    <img data-test="confirmButton" v-on:click="confirmChanges()" class="confirm-button" src="../assets/svgs/Tic.svg" />
   </div>
 </template>
 

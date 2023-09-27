@@ -60,14 +60,14 @@
           </tr>
         </tbody>
       </table>
-
+      
       <table data-test="usersTable" v-if="targets[targetSelector] == 'Users'">
         <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Roles</th>
+            <th>Role</th>
             <th>Confirmation Time</th>
             <th>Created Time</th>
             <th>Actions</th>
@@ -78,9 +78,9 @@
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.password }}</td>
-            <td><DynamicArrayViewer :array="user.roles"></DynamicArrayViewer></td>
-            <td>{{ longToDate(user.confirmation_time.$date.$numberLong) }}</td>
-            <td>{{ longToDate(user.created_time.$date.$numberLong) }}</td>
+            <td> {{ user.role }}</td>
+            <td>{{ toNormalDate(user.confirmation_time.$date) }}</td>
+            <td>{{ toNormalDate(user.created_time.$date) }}</td>
             <td class="unselectable">
               <div class="icons">
                 <img
@@ -88,10 +88,10 @@
                     openDialog({
                       Name: user.name,
                       Email: user.email,
-                      Password: '',
-                      Roles: user.roles,
-                      'Confirmation time': longToDate(user.confirmation_time.$date.$numberLong),
-                      'Creation time': longToDate(user.created_time.$date.$numberLong),
+                      Password: user.password,
+                      Role: user.role,
+                      'Confirmation time': toNormalDate(user.confirmation_time.$date),
+                      'Creation time': toNormalDate(user.created_time.$date),
                     },
                     user._id.$oid,
                     true)
@@ -165,6 +165,9 @@ export default {
     },
     getAllUsers() {
       this.data["Users"] = users
+    },
+    toNormalDate(date) {
+      return date.substr(0,10) + ", " + date.substr(11, 8)
     },
 
     deleteCountry(id, key) {

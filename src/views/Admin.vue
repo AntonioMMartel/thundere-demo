@@ -45,16 +45,16 @@
                   class="unselectable button"
                   src="/svgs/EditButton.svg"
                 />
-                <img v-on:click="deleteCountry(country._id.$oid, index)" class="unselectable button" src="/svgs/Trashcan.svg" />
+                <img v-on:click="deleteCountry(country._id.$oid, index)" class="unselectable button" src="../assets/svgs/Trashcan.svg" />
               </div>
             </td>
           </tr>
           <tr>
             <td v-on:wheel="changePageOnScroll($event)" class="unselectable" colspan="100%">
               <div class="page-display">
-                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="/svgs/ArrowLeft.svg" />
+                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowLeft.svg" />
                 {{ page + 1 }}
-                <img v-on:click="increasePageCounter()" class="page-arrow button" src="/svgs/ArrowRight.svg" />
+                <img v-on:click="increasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowRight.svg" />
               </div>
             </td>
           </tr>
@@ -99,27 +99,27 @@
                   class="unselectable button"
                   src="/svgs/EditButton.svg"
                 />
-                <img v-on:click="deleteUser(user._id.$oid)" class="unselectable button" src="/svgs/Trashcan.svg" />
+                <img v-on:click="deleteUser(user._id.$oid)" class="unselectable button" src="../assets/svgs/Trashcan.svg" />
               </div>
             </td>
           </tr>
           <tr>
             <td v-on:wheel="changePageOnScroll($event)" class="unselectable" colspan="100%">
               <div class="page-display">
-                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="/svgs/ArrowLeft.svg" />
+                <img v-on:click="decreasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowLeft.svg" />
                 {{ page + 1 }}
-                <img v-on:click="increasePageCounter()" class="page-arrow button" src="/svgs/ArrowRight.svg" />
+                <img v-on:click="increasePageCounter()" class="page-arrow button" src="../assets/svgs/ArrowRight.svg" />
               </div>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <img data-test="addButton" v-on:click="openDialog({}, 0, false)" class="add button" src="/svgs/add.svg" />
+      <img data-test="addButton" v-on:click="openDialog({}, 0, false)" class="add button" src="../assets/svgs/add.svg" />
         <div v-if="targets[targetSelector] == 'Countries'" class="select-container"> 
-          <img v-on:click="moveDialogModeBackwards()" class="arrow button" src="/svgs/ArrowLeft.svg" />
+          <img v-on:click="moveDialogModeBackwards()" class="arrow button" src="../assets/svgs/ArrowLeft.svg" />
           <div class="sub-title">{{ dialogModes[selectedDialogMode] }} </div>
-          <img v-on:click="moveDialogModeForwards()" class="arrow button" src="/svgs/ArrowRight.svg" />
+          <img v-on:click="moveDialogModeForwards()" class="arrow button" src="../assets/svgs/ArrowRight.svg" />
         </div>
     </div>
   </div>

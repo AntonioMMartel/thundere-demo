@@ -1,7 +1,7 @@
 <template>
   <span data-test="dataValue" v-on:wheel="modifyPointer($event)" class="container">
     {{ this.array[this.pointer] }}
-    <img class="unselectable" src="/svgs/ArrowsUpDown.svg" alt="" />
+    <img class="unselectable" src="./svgs/ArrowsUpDown.svg" alt="" />
   </span>
 </template>
 

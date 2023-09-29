@@ -6,7 +6,7 @@
       <div v-if="nothingFound" class="message"> {{ message }}</div>  
       <div class="country-view">  
 
-        <img ref="left" v-if="Object.keys(this.data).length > 6" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" :src="'/svgs/ArrowLeft.svg'" />
+        <img ref="left" v-if="Object.keys(this.data).length > 6" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="./svgs/ArrowLeft.svg" />
         <div class="grid" :style="{'grid-template-columns': gridTemplateColumns, 'grid-template-rows': gridTemplateRows}">
 
           <div ref="country" v-for="(country, key) in  Object.entries(data).slice(page * 6, (page + 1) * 6)" 
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <img ref="right" v-if="Object.keys(this.data).length > 6" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" :src="'/svgs/ArrowRight.svg'" />
+        <img ref="right" v-if="Object.keys(this.data).length > 6" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="./svgs/ArrowRight.svg" />
       </div>
       <div v-if="Object.keys(this.data).length > 6" class="page-display">
         {{ page + 1 }}

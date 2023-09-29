@@ -6,7 +6,7 @@
       <div class="separed">Date</div>
       {{ dateKeys[dateSelector] }}
     </div>
-    <img v-if="Object.keys(hourData).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="/svgs/ArrowLeft.svg" />
+    <img v-if="Object.keys(hourData).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="public/svgs/ArrowLeft.svg" />
     <div class="flex">
       <div v-if="data" class="data-container">
 
@@ -73,7 +73,7 @@
       <div class="separed">Hour</div>
       {{ hourKeys[hourSelector] }}
     </div>
-    <img v-if="Object.keys(hourData).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="/svgs/ArrowRight.svg" />
+    <img v-if="Object.keys(hourData).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="public/svgs/ArrowRight.svg" />
     
   </div>
   

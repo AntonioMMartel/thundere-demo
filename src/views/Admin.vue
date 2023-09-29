@@ -171,28 +171,16 @@ export default {
     },
 
     deleteCountry(id, key) {
-      if (confirm("This country and all its associated data will be deleted permanently."))
-        deleteCountryByID(id)
-          .then((response) => {
-            // Flash message diciendo que todo bien
-            document.getElementById(id).style.display = "none";
-          })
-          .catch((error) => {
-            // Flash message diciendo que todo mal
-          });
+      if (confirm("This country and all its associated data will be deleted permanently. (This feature is disabled and just hides the country in the table)"))
+        document.getElementById(id).style.display = "none";
+
 
 
     },
     deleteUser(id) {
-      if (confirm("This user and all its associated data will be deleted permanently."))
-        deleteUserByID(id)
-          .then((response) => {
-            // Flash message diciendo que todo bien
-            document.getElementById(id).style.display = "none";
-          })
-          .catch((error) => {
-            // Flash message diciendo que todo mal
-          });
+      if (confirm("This user and all its associated data will be deleted permanently. (This feature is disabled and just hides the user in the table)"))
+        document.getElementById(id).style.display = "none";
+
     },
     moveTargetBackwards() {
       if (this.targetSelector - 1 < 0) {
@@ -250,7 +238,7 @@ export default {
                                   Name: '',
                                   Email:'',
                                   Password: '',
-                                  Roles: [],
+                                  Roles: '',
                                   'Confirmation time': this.longToDate(Date.now()),
                                   'Creation time': this.longToDate(Date.now()),
                                 }
@@ -264,8 +252,7 @@ export default {
             this.dialogIsOpen = true;
 
           } else if (this.dialogModes[this.selectedDialogMode] === "Add all using api") {
-            if(confirm("This will update all existing data with that of the api"))
-              addAllCountries({"Mode": "ADD_ALL"});
+            confirm("This will update all existing data with that of the api. (This feature is disabled and pressing OK will do nothing)")
 
           } else if (this.dialogModes[this.selectedDialogMode] === "Add one normally") { // Solamente va a añadir
             this.openDialogData = {

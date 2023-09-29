@@ -4,7 +4,7 @@
     <div class="dialog-body">
       <div class="form">
         <div data-test="editingTitle" v-if="dialogIsUpdating" class="form-title">Editing {{ target }}</div>
-        <div data-test="addingTitle" v-if="!dialogIsUpdating" class="form-title">Adding {{ target }}</div>
+        <div data-test="addingTitle" v-if="!dialogIsUpdating" class="form-title">Adding new {{ target }}</div>
         <div v-for="(field, label) in data" :key="label" class="field-container">
           <label class="form-label" :for="field"> {{ label }} </label>
           <input v-on:blur="saveInput(label)" v-if="typeof(field) === 'string' && label !== 'Password'" required :name="label" :id="label" class="form-input" type="text" :value="field" />
@@ -18,8 +18,8 @@
         <div data-test="messageText" class="text-center"> {{ message }}</div>
         <div class="dialog-buttons">
           <button class="button cancel" v-on:click="closeDialog()">Cancel</button>
-          <button data-test="updateButton" v-if="dialogIsUpdating" class="button confirm" v-on:click="updateTarget(id, target)"> Confirm </button>
-          <button data-test="addButton" v-if="!dialogIsUpdating" class="button confirm" v-on:click="addTarget(target)"> Add </button>
+          <button data-test="updateButton" disabled v-if="dialogIsUpdating" class="button confirm" v-on:click="updateTarget(id, target)"> Confirm </button>
+          <button data-test="addButton" disabled v-if="!dialogIsUpdating" class="button confirm" v-on:click="addTarget(target)"> Add </button>
         </div>
       </div>
     </div>
@@ -35,8 +35,8 @@ export default {
   data() {
     return {
       input: "",
-      error: false,
-      errorMessage: "Ha habido un error: ",
+      error: true,
+      errorMessage: "This feature is disabled",
       errorContent: ""
     };
   },
@@ -225,11 +225,8 @@ $primary-color-darker: #a6a6a6;
 }
 
 .confirm {
-  background: rgba(26, 177, 136, 0.7);
-  &:hover {
-    background: rgba(11, 145, 134, 0.7);
-    
-  }
+  background: rgba(26, 177, 136, 0.2);
+  cursor: auto
 }
 
 .cancel {

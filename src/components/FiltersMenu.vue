@@ -1,6 +1,6 @@
 <template>
   <div class="filters-container">
-    <img v-if="dataIsPrepared" v-on:click="addNewFilter()" :style="{'opacity': addFilterButtonOpacity, 'cursor': addFilterButtonCursor}" class="add button" src="/svgs/add.svg" />
+    <img v-if="dataIsPrepared" v-on:click="addNewFilter()" :style="{'opacity': addFilterButtonOpacity, 'cursor': addFilterButtonCursor}" class="add button" src="/public/svgs/add.svg" />
     <div v-if="dataIsPrepared" class="filters-grid">
       <div ref="filters" :class="filterClass" v-for="(index, key) in filters" :key="key">
         <FilterInstance v-if="filters[key]" ref="key" @filterChanged="filterChanged" @deleteFilter="deleteFilter" :data="data" :index="key"></FilterInstance>

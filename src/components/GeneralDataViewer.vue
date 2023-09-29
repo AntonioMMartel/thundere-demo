@@ -1,6 +1,6 @@
 <template>
   <div class="all-container">
-    <img v-if="Object.keys(this.data).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="/svgs/ArrowLeft.svg" />
+    <img v-if="Object.keys(this.data).length > 8" v-on:click="decreasePageCounter()" class="page-arrow left-arrow button" src="/public/svgs/ArrowLeft.svg" />
     <div class="flex">
 
       <div v-if="data" class="data-container">
@@ -28,7 +28,7 @@
         {{ page + 1 }}
       </div>
     </div>
-    <img v-if="Object.keys(this.data).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="/svgs/ArrowRight.svg" />
+    <img v-if="Object.keys(this.data).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="/public/svgs/ArrowRight.svg" />
   </div>
 </template>
 

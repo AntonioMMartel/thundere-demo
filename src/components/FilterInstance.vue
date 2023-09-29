@@ -38,7 +38,7 @@
         </svg>
       </div>
       <div class="filter-option">
-        <img class="delete-icon" @click="deleteFilter" src="/svgs/Trash.svg" alt="Delete filter" />
+        <img class="delete-icon" @click="deleteFilter" src="/public/svgs/Trash.svg" alt="Delete filter" />
       </div>
       <div @wheel="changeHour($event)" v-if="selectedType === 'Weather'" class="filter-option">{{ americanStyleHour }}</div>
     </div>

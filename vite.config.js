@@ -12,15 +12,5 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-  css: {
-    loaderOptions: {
-      sass: {
-        data: `@import "@/assets/_variables.scss";`
-      }
-    }
-  },
-  build: {
-    rollupOptions: `build.rollupOptions.external`
   }
 })

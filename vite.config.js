@@ -19,5 +19,8 @@ export default defineConfig({
         data: `@import "@/assets/_variables.scss";`
       }
     }
+  },
+  build: {
+    rollupOptions: `build.rollupOptions.external`
   }
 })

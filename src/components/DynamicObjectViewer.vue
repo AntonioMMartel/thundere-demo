@@ -50,18 +50,18 @@
         <div class="data-view" v-if="!(thirdData instanceof Array) &&  typeof(thirdData) === 'object'">
           <div class="nested-data-view" v-on:wheel="modifyPointer($event, 'Second', secondKeys)">
             {{ secondKeys[secondPointer] }}
-            <img class="unselectable"  src="public/svgs/ArrowsUpDown.svg" alt="" />
+            <img class="unselectable"  src="/public/svgs/ArrowsUpDown.svg" alt="" />
           </div>
           <div class="third-data-view all-container" v-on:wheel="modifyPointer($event, 'Third', thirdKeys)">
         
             <div class="nested-data-view" v-if="typeof(thirdData[thirdKeys[thirdPointer]]) === 'string' || typeof(data[1]) === 'number'" >
               {{ thirdKeys[thirdPointer] }}: {{ thirdData[thirdKeys[thirdPointer]] }}
-              <img class="unselectable"  src="public/svgs/ArrowsUpDown.svg" alt="" />
+              <img class="unselectable"  src="/public/svgs/ArrowsUpDown.svg" alt="" />
 
             </div>
             <div class="nested-data-view" v-if="typeof(thirdData[thirdKeys[thirdPointer]]) === 'boolean'">
               {{ thirdKeys[thirdPointer] }}: {{ thirdData[thirdKeys[thirdPointer]] ? true : false }}
-              <img class="unselectable"  src="public/svgs/ArrowsUpDown.svg" alt="" />
+              <img class="unselectable"  src="/public/svgs/ArrowsUpDown.svg" alt="" />
 
             </div>
 

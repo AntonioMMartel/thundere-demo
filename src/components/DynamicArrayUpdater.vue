@@ -5,12 +5,12 @@
       <span data-test="addingNewElement" v-if="addingNewElement"> Adding new element </span>
     </div>
     <div data-test="optionsMenu" ref="options" class="options-menu" >
-      <img class="unselectable"  src="public/svgs/ArrowsUpDown.svg" alt="" />
+      <img class="unselectable"  src="/public/svgs/ArrowsUpDown.svg" alt="" />
       <input data-test="indexInput" v-if="showingOptionsMenu" ref="pointerInput" class="bubble pointer-input down" type="number" v-model="pointer"/>
       <div data-test="addElementButton" v-if="showingOptionsMenu" v-on:click="startAddingNewElement()" class="bubble up" > + </div>
     </div>
     <input data-test="updateValueInput" name="input" id="form-input" type="text" :value="this.array[this.pointer]" />
-    <img data-test="confirmButton" v-on:click="confirmChanges()" class="confirm-button" src="public/svgs/Tic.svg" />
+    <img data-test="confirmButton" v-on:click="confirmChanges()" class="confirm-button" src="/public/svgs/Tic.svg" />
   </div>
 </template>
 

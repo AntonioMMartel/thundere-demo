@@ -1,7 +1,7 @@
 <template>
 
-  <div class="all-container">
-    
+  <div v-if="!error" class="all-container">
+   
     <div v-on:wheel="modifyPointer($event, 'Date', dateKeys)" class="selector date-selector"> 
       <div class="separed">Date</div>
       {{ dateKeys[dateSelector] }}
@@ -75,6 +75,10 @@
     </div>
     <img v-if="Object.keys(hourData).length > 8" v-on:click="increasePageCounter()" class="page-arrow right-arrow button" src="/public/svgs/ArrowRight.svg" />
     
+  </div>
+
+  <div v-if="error" class="error-message">
+    There is no weather data for this country
   </div>
   
 </template>
@@ -201,6 +205,10 @@ export default {
     };
   },
   props: ["data"],
+  beforeMount() {
+    if(this.data === undefined)
+      this.error = true
+  },
   methods: {
     decreasePageCounter() {
       if (this.page - 1 < 0) {
@@ -402,6 +410,14 @@ $primary-color-darker: #a6a6a6;
   height: 80vh;
   display: flex;
   
+}
+
+.error-message {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
 }
 
 

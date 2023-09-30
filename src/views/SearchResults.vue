@@ -34,7 +34,7 @@
 import CountrySearchInput from "../components/CountrySearchInput.vue";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 //import { search } from "../../facade/SearchFacade";
-import countries from "../assets/data/countries.json"
+//import countries from "../assets/data/countries.json"
 
 import { ref } from 'vue'
 

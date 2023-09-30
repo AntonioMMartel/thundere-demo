@@ -11,7 +11,7 @@
 
 <script>
 import FilterInstance from "./FilterInstance.vue";
-import countries from "../assets/data/countries.json"
+//import countries from "../assets/data/countries.json"
 export default {
   name: "FiltersMenu",
   data() {

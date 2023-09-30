@@ -129,7 +129,7 @@
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import DynamicArrayViewer from "../components/DynamicArrayViewer.vue";
 import UpdateDialog from "../components/UpdateDialog.vue";
-import countries from "../assets/data/countries.json"
+// import countries from "../assets/data/countries.json"
 import users from "../assets/data/users.json"
 //import { getAllCountries, deleteCountryByID, getAllUsers, deleteUserByID, addAllCountries } from "../../facade/AdminFacade.js";
 export default {

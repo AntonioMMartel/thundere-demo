@@ -20,7 +20,7 @@
 import WeatherDataViewer from "../components/WeatherDataViewer.vue";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 import GeneralDataViewer from "../components/GeneralDataViewer.vue";
-import countries from "../assets/data/countries.json"
+import countries from "@/assets/data/countries.json"
 
 export default {
   name: "CountryViewer",

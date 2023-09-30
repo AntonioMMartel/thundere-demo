@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import users from "../assets/data/users.json"
+import users from "@/assets/data/users.json"
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
 
 export default {

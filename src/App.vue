@@ -34,7 +34,7 @@ onMounted( () => {
     <div>
       <Header :userRole="userRole" />
       <article class="forwards">
-        <RouterView />
+        <router-view></router-view>
       </article>
       <Footer/>
     </div>

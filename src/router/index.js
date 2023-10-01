@@ -23,8 +23,7 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/Home.vue')
     }, 
-        { path: "/bookmarks",
-    component: Bookmarks },
+    { path: "/bookmarks", component: Bookmarks },
     { path: "/login", component: Login },
     { path: "/search/:input", component: SearchResults, props: true },
     { path: "/search", component: SearchResults, props: true },
@@ -35,8 +34,6 @@ const router = createRouter({
     { path: "/admin", component: Admin },
     { path: "/test", component: VueTest },
     { path: "/not/found", component: NotFound },
-    
-  
   ]
 })
 

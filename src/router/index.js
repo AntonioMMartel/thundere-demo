@@ -12,6 +12,7 @@ import VueTest from "../views/VueTest.vue";
 import NotFound from "../views/NotFound.vue";
 import SearchResults from "../views/SearchResults.vue";
 import Bookmarks from "../views/Bookmarks.vue";
+import Info from "../views/Info.vue";
 
 
 
@@ -33,7 +34,9 @@ const router = createRouter({
     { path: "/history", component: History },
     { path: "/admin", component: Admin },
     { path: "/test", component: VueTest },
+    { path: "/info", component: Info },
     { path: "/not/found", component: NotFound },
+
   ]
 })
 

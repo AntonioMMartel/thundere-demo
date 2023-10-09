@@ -21,10 +21,6 @@
 $primary-color:#dbdbdb; //#F5F5F5 //#c9c9c9; 
 $primary-color-darker: #a6a6a6;
 
-/*
-            This is a visual demo, all data apis are disconnected and data will not be up to date.
-            As well as this, most countries wont have weather data. Except for: Morocco, Belgium, China, Cabo Verde and several others.
-*/
     .contenedor-footer{
         display: flex;
         flex-direction: column;

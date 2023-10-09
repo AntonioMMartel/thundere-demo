@@ -3,85 +3,89 @@
     <FadingLightsAnimation />
     <div class="container-ui">
       <div data-test="title" class="title">
-        Relevant info 
+        Relevant information
       </div>
-      <div class="info-container">
-        This is a visual demo, all data apis, the backend and the cloud db are disconnected. <br>
-        This means that:
-        <div class="list">
-          <div class="list-item">Most countries wont have weather data. Except for: Morocco, Belgium, China, Cabo Verde and several others.</div>
-          <div class="list-item">The data will not be up to date. Most of it is from 2022.</div>
-          <div class="list-item">All the functionality that has to do with apis such as login, register and all other CRUD operations are disabled.</div>
-        </div>
+      <div v-if="info">
+        <div class="info-container">
+          This is a visual demo where all data apis, the backend and the cloud db are disconnected. <br>
+          This means that:
+          <div class="list">
+            <div class="list-item">Most countries wont have weather data. Except for: Morocco, Belgium, China, Cabo Verde and several others.</div>
+            <div class="list-item">The data will not be up to date. Most of it is from 2022.</div>
+            <div class="list-item">All the functionality that has to do with apis such as login, register and all other CRUD operations are disabled.</div>
+          </div>
 
-        <div class="list2">
-          <div class="list-item">
-              There is one admin account: <br><br>
-              Email: admin@email.com <br><br>
-              Password: 123 
-          </div>
-          <div class="why-button"> 
-            Why is this? 
+          <div class="list2">
+            <div class="list-item">
+                There is one admin account: <br><br>
+                Email: admin@email.com <br><br>
+                Password: 123 
+            </div>
+            <div v-on:click="toggleInfo()" class="why-button"> 
+              Why is this? 
+            </div>
           </div>
         </div>
-        
-        
+      </div>
+
+      <!-- Clicked Why is that? button -->
+      <div v-if="!info">
+        <div class="info-container">
+        This is because the Bachelor Thesis time frame is of 300 hours. Which was too limiting for a project with a scope as big as this one. <br>
+        This means that this project isnt "ready" for producton and would need more time (that I dont have): 
+          <div class="list">
+            <div class="list-item">
+              So that this project fulfils the cloud host constraints. (And that I discover what they are by exploring documentation and tutorials)
+            </div>
+            <div class="list-item">
+              So that the data transfer between all parts of the application is done efficiently so that it complies with the 
+              requirements of the free tier of the apis and the cloud database.
+            </div>
+            <div class="list-item">
+              So that this project even when fulfilling the cloud host constraints can live within the free tier of the cloud provider.
+            </div>
+          </div>
+
+          <div class="list2">
+            <div class="list">
+              <div class="list-item">
+                So that this project is minimally protected against at least the most common varieties of cyber attacks (CSRF tokens, code injection...etc.)
+              </div>
+              <div class="list-item">
+                So that this project is properly tested to ensure that code works properly and doesnt fail or bug out terribly in the future.
+              </div>
+            </div>
+            
+            <div v-on:click="toggleInfo()" class="why-button"> 
+              Go back
+            </div>
+          </div>
           
-        
-        
-
-          <!--
-         Because this project isnt finished. 
-        Having into account Bachelor Thesis time frames, this project had a time limit of 300 hours. A time limit
-        that is too limiting for projects with a scope as big as this one.
-        Which means that this project isnt "ready" for producton and would need more time: 
-            - Firstly, so that this project fulfils the cloud host constraints. (And that I discover what they are by exploring documentation and tutorials)
-            - Secondly, so that the data transfer between the apis to the backend and from the backend to the frontend is done efficiently enough
-            so that it complies with the requirements of the free tier of the apis and the cloud database.
-            - Thirdly, so that this project even when fulfilling the cloud host constraints can live within the free tier of the cloud provider.
-            - Fourthly, so that this project is minimally protected against at least the most common varieties of cyber attacks (CSRF tokens, code injection...etc.)
-            - Fifthly, so that this project is properly tested to ensure that code works properly and doesnt fail or bug out terribly in the future.
-        
-        Time that, in my view, is better spent in more meaningful projects. -->
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import CountrySearchInput from "../components/CountrySearchInput.vue";
 import FadingLightsAnimation from "../components/FadingLightsAnimation.vue";
-import FiltersMenu from "../components/FiltersMenu.vue";
 
 export default {
-  name: "Home",
-  components: { FadingLightsAnimation, CountrySearchInput, FiltersMenu },
+  name: "Info",
+  components: { FadingLightsAnimation },
   data () {
     return {
-      filters: []
+      filters: [],
+      info: true
     }
   },
   mounted () {
-    if(this.getUserRole() === ""){
-      this.setUserRole("none")
-    }
 
-    this.userRole = this.getUserRole()
   },
   methods: {
-    filterChanged(filters) {
-      this.filters = filters
-    },
-    getUserRole() {
-      return document.cookie.substring(9)
-      // return sessionStorage.getItem("userRole");
-    },
-    setUserRole(role) {
-      var expiryDate = new Date(Date.now() + 60 * 60 * 1000)
-      return document.cookie = "userRole=" + role + ";expires=" + expiryDate +", path=/, SameSite=Strict" // Session token expires after 6 hours or after brower close
-      //return sessionStorage.setItem("userRole", role);
+    toggleInfo() {
+      this.info = !this.info 
     }
-
   },
 
 };
@@ -123,14 +127,14 @@ $primary-color-darker: #a6a6a6;
 
 
 .list-item {
-  width: 240px;
-  height: 160px;
+  width: 260px;
+  height: 170px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
   box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin: 40px;

@@ -4,7 +4,7 @@
     @keydown.enter.prevent="submit" 
     v-model="input"
     :rows="textRows"
-    placeholder="Pon un país"> </textarea>
+    placeholder="Put a country's name"> </textarea>
     <div data-test="error" class="texto-error" v-if="error">{{ errorMessage }}</div>
   </div>
 </template>

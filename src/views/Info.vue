@@ -5,7 +5,8 @@
       <div data-test="title" class="title">
         Relevant information
       </div>
-      <div v-if="info">
+
+      <div v-if="info == 0">
         <div class="info-container">
           This is a visual demo where all data apis, the backend and the cloud db are disconnected. <br>
           This means that:
@@ -14,22 +15,27 @@
             <div class="list-item">The data will not be up to date. Most of it is from 2022.</div>
             <div class="list-item">All the functionality that has to do with apis such as login, register and all other CRUD operations are disabled.</div>
           </div>
-
           <div class="list2">
-            <div class="list-item">
+            <div class="list">
+              <div class="list-item">
                 There is one admin account: <br><br>
                 Email: admin@email.com <br><br>
                 Password: 123 
+              </div>
+              <div class="list-item">
+                
+                Logging in to the admin account will allow the user to browse all the data in the Admin view
+              </div>
             </div>
             <div v-on:click="toggleInfo()" class="why-button"> 
-              Why is this? 
+              Why is this?
             </div>
           </div>
         </div>
       </div>
 
       <!-- Clicked Why is that? button -->
-      <div v-if="!info">
+      <div v-if="info == 1">
         <div class="info-container">
         This is because the Bachelor Thesis time frame is of 300 hours. Which was too limiting for a project with a scope as big as this one. <br>
         This means that this project isnt "ready" for producton and would need more time (that I dont have): 
@@ -45,7 +51,6 @@
               So that this project even when fulfilling the cloud host constraints can live within the free tier of the cloud provider.
             </div>
           </div>
-
           <div class="list2">
             <div class="list">
               <div class="list-item">
@@ -54,13 +59,11 @@
               <div class="list-item">
                 So that this project is properly tested to ensure that code works properly and doesnt fail or bug out terribly in the future.
               </div>
-            </div>
-            
+            </div>  
             <div v-on:click="toggleInfo()" class="why-button"> 
               Go back
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -76,7 +79,7 @@ export default {
   data () {
     return {
       filters: [],
-      info: true
+      info: 0
     }
   },
   mounted () {
@@ -84,7 +87,11 @@ export default {
   },
   methods: {
     toggleInfo() {
-      this.info = !this.info 
+      if(this.info == 1) {
+        this.info = 0
+      } else {
+        this.info++
+      }
     }
   },
 

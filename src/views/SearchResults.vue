@@ -89,7 +89,7 @@ export default {
     },
     search(input, filters) {
       let results = [];
-      const regExp = new RegExp(input + "*")
+      const regExp = new RegExp(this.capitalize(input) + "*")
       for(let i = 0; i < countries.length; i++){
         for(let j = 0; j < countries[i].names.length; j++) {
           if(regExp.exec(countries[i].names[j])){
@@ -100,7 +100,11 @@ export default {
       }
 
       return results;
-    }
+    },
+    capitalize(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    } 
+
   },
   beforeMount() {
     if(typeof(this.input) === "undefined" ) this.input = "";
